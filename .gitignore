@@ -1,5 +1,8 @@
 # Object file
 *.o
 
-# Ada Library Information
-*.ali
+# Executable file
+*.exe
+
+# Temp Code Runner
+tempCodeRunnerFile.cpp
