@@ -148,10 +148,16 @@ public:
 
                 if(r%2 == 1) {
                     c = newPos%10 - 1;
+                    if(c == -1) {
+                        c = 9;
+                    }
                 } 
                 else
                 {
                     c = 10 - newPos%10;
+                    if(c == 10) {
+                        c = 0;
+                    }
                 }
             }
 
@@ -190,6 +196,11 @@ public:
         return iSecret;
     }
 
+    int get_board(std::pair<int,int> pos) {
+
+        return board[pos.first][pos.second];
+    }
+
 };
 
 int main()
@@ -205,20 +216,22 @@ int main()
     s.display_board();
     
     cout<<"\nGAME\n";
-    cout<<"Player 1: "<<s.player_pos(1).first<<" "<<s.player_pos(1).second<<endl;
-    cout<<"Player 2: "<<s.player_pos(2).first<<" "<<s.player_pos(2).second<<endl;
+    cout<<"Player 1: "<<s.get_board(s.player_pos(1))<<endl;
+    cout<<"Player 2: "<<s.get_board(s.player_pos(2))<<endl;
+    //cout<<"Player 1: "<<s.player_pos(1).first<<" "<<s.player_pos(1).second<<endl;
+    //cout<<"Player 2: "<<s.player_pos(2).first<<" "<<s.player_pos(2).second<<endl;
     
     while(!end) {
 
         mv = s.random_move();
         s.moves(1,mv);
         cout<<"Dice: "<<mv<<endl;
-        cout<<"Player 1: "<<s.player_pos(1).first<<" "<<s.player_pos(1).second<<endl;
+        cout<<"Player 1: "<<s.get_board(s.player_pos(1))<<endl;
         
         mv = s.random_move();
         s.moves(2,mv);
         cout<<"Dice: "<<mv<<endl;
-        cout<<"Player 2: "<<s.player_pos(2).first<<" "<<s.player_pos(2).second<<endl;
+        cout<<"Player 2: "<<s.get_board(s.player_pos(2))<<endl;
 
         if(s.player_pos(1).first == 0 && s.player_pos(1).second == 0 &&
            s.player_pos(1).first == 0 && s.player_pos(2).second == 0) {
